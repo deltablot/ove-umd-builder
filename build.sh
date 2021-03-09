@@ -54,8 +54,8 @@ function publish()
         cd open-vector-editor-umd || exit 1
         npm version "$OveV"
     )
-    # and publsih
-    npm publish open-vector-editor-umd --access public --dry-run
+    # and publish
+    npm publish @deltablot/open-vector-editor-umd --access public
 }
 
 function run()

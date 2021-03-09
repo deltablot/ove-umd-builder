@@ -1,3 +1,9 @@
 node_modules/*
 open-vector-editor-umd/node_modules/*
+open-vector-editor-umd/*.ttf
+open-vector-editor-umd/*.eot
+open-vector-editor-umd/*.woff
+open-vector-editor-umd/open-vector-editor*
+open-vector-editor-umd/ubuntu-mono-latin*
+open-vector-editor-umd/main.css*
 .env

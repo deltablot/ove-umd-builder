@@ -1,5 +1,5 @@
 {
-  "name": "ove-umd-builder",
+  "name": "@deltablot/ove-umd-builder",
   "version": "0.0.1",
   "description": "Helper to publish only the umd files of open-vector-editor",
   "author": "Marcel Bolten",

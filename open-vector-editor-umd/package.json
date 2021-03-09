@@ -1,7 +1,23 @@
 {
-  "name": "open-vector-editor-umd",
-  "version": "0.0.1",
-  "description": "Only the umd files of open-vector-editor",
+  "name": "@deltablot/open-vector-editor-umd",
+  "version": "16.0.1",
+  "description": "UMD files for open vector editor",
+  "main": "open-vector-editor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deltablot/ove-umd-builder.git"
+  },
+  "keywords": [
+    "plasmid",
+    "editor"
+  ],
   "author": "Marcel Bolten",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deltablot/ove-umd-builder/issues"
+  },
+  "homepage": "https://github.com/deltablot/ove-umd-builder#readme"
 }
