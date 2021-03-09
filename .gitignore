@@ -1,0 +1,3 @@
+node_modules/*
+open-vector-editor-umd/node_modules/*
+.env

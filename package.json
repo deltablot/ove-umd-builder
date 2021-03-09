@@ -1,0 +1,13 @@
+{
+  "name": "ove-umd-builder",
+  "version": "0.0.1",
+  "description": "Helper to publish only the umd files of open-vector-editor",
+  "author": "Marcel Bolten",
+  "contributors": [
+    "Nicolas CARPi <nico-git@deltablot.email> (https://github.com/NicolasCARPi)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "open-vector-editor": "*"
+  }
+}

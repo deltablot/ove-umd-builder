@@ -1,0 +1,7 @@
+{
+  "name": "open-vector-editor-umd",
+  "version": "0.0.1",
+  "description": "Only the umd files of open-vector-editor",
+  "author": "Marcel Bolten",
+  "license": "MIT"
+}
