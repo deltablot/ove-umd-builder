@@ -4,7 +4,7 @@
 
 Fortunately, open-vector-editor also has a universal build (Universal Module Definition, UMD).
 
-This is a little helper script to republish only the UMD files in a new package open-vector-editor-umd:
+This is a little helper script to republish only the UMD files in a new package [@deltablot/open-vector-editor-umd](https://www.npmjs.com/package/@deltablot/open-vector-editor-umd):
 
 - check for new OVE version
 - download files if new version is available
@@ -17,6 +17,6 @@ If you have problems with Open Vector Editor please seek help from the OVE devel
 # Setup
 
 - clone this git repository
-- rename `.env-example` to `.env`
+- rename `.env.dist` to `.env`
 - replace "YOUR-TOKEN-GOES-HERE" with your actual token from npmjs.com
 - setup a cron job to execute `build.sh run` with the desired schedule
