@@ -19,4 +19,4 @@ If you have problems with Open Vector Editor please seek help from the OVE devel
 - clone this git repository
 - rename `.env-example` to `.env`
 - replace "YOUR-TOKEN-GOES-HERE" with your actual token from npmjs.com
-- setup a cron job to execute `ove-umd.sh run` with the desired schedule
+- setup a cron job to execute `build.sh run` with the desired schedule
