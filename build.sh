@@ -18,7 +18,7 @@ function clean()
     # delete all old files
     (
         cd open-vector-editor-umd || exit 1
-        rm -f !('package.json'|'README.md')
+        rm -rf !('package.json'|'README.md')
     )
 }
 
@@ -40,10 +40,10 @@ function help()
         copy-umd-files  Copy OVE umd files from node_modules folder to open-vector-editor-umd
         clean           Delete open-vector-editor-umd files
         help            Show this text
-        publish         Publish the current version of open-vetor-editor-umd at npm
+        publish         Publish the current version of open-vector-editor-umd at npm
         run             Upgrade and publish
-        upgrade         Get the latest version of open-vetor-editor from npm
-        version         Display elabctl version
+        upgrade         Get the latest version of open-vector-editor from npm
+        version         Display script version
     "
 }
 
