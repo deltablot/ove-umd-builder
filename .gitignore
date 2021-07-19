@@ -7,3 +7,4 @@ open-vector-editor-umd/open-vector-editor*
 open-vector-editor-umd/ubuntu-mono-latin*
 open-vector-editor-umd/main.css*
 .env
+package-lock.json
