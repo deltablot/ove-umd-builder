@@ -55,7 +55,7 @@ function publish()
         npm version "$OveV"
     )
     # and publish
-    npm publish @deltablot/open-vector-editor-umd --access public
+    npm publish open-vector-editor-umd --access public
 }
 
 function run()
@@ -69,6 +69,7 @@ function run()
 function upgrade()
 {
     # download the new version
+    yarn add open-vector-editor@"$OveV"
     yarn install --non-interactive --pure-lockfile
 
     clean
