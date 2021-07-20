@@ -52,7 +52,7 @@ function publish()
     # update version number and publish
     (
         cd open-vector-editor-umd || exit 1
-        npm version $OveV > /dev/null
+        npm version --allow-same-version $OveV
         npm publish --access public
     )
 }
