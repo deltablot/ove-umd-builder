@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-declare -r VERSION='0.0.1'
+declare -r VERSION='0.1.0'
 
 # source the npm auth-token
 source .env
@@ -7,11 +7,11 @@ source .env
 # need this to delete files
 shopt -s extglob
 
-#get current version of open-vector-editor-umd
+#get current local version of open-vector-editor-umd
 OveUmdV=$(node -pe "require('./open-vector-editor-umd/package.json').version")
 
-# get the new version
-OveV=$(yarn info --silent open-vector-editor version)
+# get the latest version of open-vector-editor
+OveV=$(npm view open-vector-editor version)
 
 function clean()
 {
@@ -49,13 +49,12 @@ function help()
 
 function publish()
 {
-    # update version number
+    # update version number and publish
     (
         cd open-vector-editor-umd || exit 1
-        npm version "$OveV"
+        npm version --allow-same-version $OveV
+        npm publish --access public
     )
-    # and publish
-    npm publish open-vector-editor-umd --access public
 }
 
 function run()
@@ -69,8 +68,7 @@ function run()
 function upgrade()
 {
     # download the new version
-    yarn add open-vector-editor@"$OveV"
-    yarn install --non-interactive --pure-lockfile
+    npm install open-vector-editor@$OveV --silent
 
     clean
     copy-umd-files
