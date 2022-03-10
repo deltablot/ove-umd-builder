@@ -39,7 +39,7 @@ jobs:
       - name: "Publish @deltablot/open-vector-editor-umd"
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cleanup
         run: |
