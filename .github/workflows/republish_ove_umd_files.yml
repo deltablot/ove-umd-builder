@@ -3,6 +3,7 @@ name: Republish ove umd files
 on:
   schedule:
     - cron:  '23 4 * * *'
+  workflow_dispatch:
 
 jobs:
   get_versions:
