@@ -8,18 +8,23 @@ on:
 jobs:
   get_versions:
     runs-on: ubuntu-20.04
+    outputs:
+      ove_umd_version: ${{ steps.setver.outputs.ove_umd_version }}
+      ove_version:  ${{ steps.setver.outputs.ove_version }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: |
-          echo "OVE_UMD_VERSION=$(node -pe "require('./open-vector-editor-umd/package.json').version")" >> $GITHUB_ENV
-          echo "OVE_VERSION=$(npm view open-vector-editor version)" >> $GITHUB_ENV
+      - name: set versions
+        id: setver
+        run: |
+          echo "::set-output name=ove_umd_version::$(node -pe "require('./open-vector-editor-umd/package.json').version")"
+          echo "::set-output name=ove_version::$(npm view open-vector-editor version)"
 
   publish:
-    needs: get_versions
-    if: env.OVE_UMD_VERSION < env.OVE_VERSION
+    needs: [get_versions]
+    if: needs.get_versions.outputs.ove_umd_version < needs.get_versions.outputs.ove_version
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
