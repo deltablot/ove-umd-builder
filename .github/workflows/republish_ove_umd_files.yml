@@ -35,9 +35,11 @@ jobs:
 
       - name: Update package version
         run: npm version --allow-same-version ${{ env.OVE_VERSION }}
+        working-directory: ./open-vector-editor-umd
 
       - name: "Publish @deltablot/open-vector-editor-umd"
         run: npm publish --access public
+        working-directory: ./open-vector-editor-umd
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
