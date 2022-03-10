@@ -1,0 +1,55 @@
+name: Republish ove umd files
+
+on:
+  schedule:
+    - cron:  '23 4 * * *'
+
+jobs:
+  get_versions:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: |
+          echo "OVE_UMD_VERSION=$(node -pe "require('./open-vector-editor-umd/package.json').version")" >> $GITHUB_ENV
+          echo "OVE_VERSION=$(npm view open-vector-editor version)" >> $GITHUB_ENV
+
+  publish:
+    needs: get_versions
+    if: env.OVE_UMD_VERSION < env.OVE_VERSION
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install latest OVE
+        run: npm install open-vector-editor@${{ env.OVE_VERSION }} --silent
+
+      - name: Copy umd files
+        run: cp node_modules/open-vector-editor/umd/* open-vector-editor-umd/
+
+      - name: Update package version
+        run: npm version --allow-same-version ${{ env.OVE_VERSION }}
+
+      - name: "Publish @deltablot/open-vector-editor-umd"
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+      - name: Cleanup
+        run: |
+          shopt -s extglob
+          rm -rf !('package.json'|'README.md')
+        working-directory: ./open-vector-editor-umd
+
+      - name: Commit new version
+        run: |
+          git config --global user.name 'Marcel Bolten'
+          git config --global user.email 'marcelbolten@users.noreply.github.com'
+          git commit -am "Automated update"
+          git push
