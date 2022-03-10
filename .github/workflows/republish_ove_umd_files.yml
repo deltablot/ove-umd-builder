@@ -34,13 +34,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install latest OVE
-        run: npm install open-vector-editor@${{ env.OVE_VERSION }} --silent
+        run: npm install open-vector-editor@${{ needs.get_versions.outputs.ove_version }} --silent
 
       - name: Copy umd files
         run: cp node_modules/open-vector-editor/umd/* open-vector-editor-umd/
 
       - name: Update package version
-        run: npm version --allow-same-version ${{ env.OVE_VERSION }}
+        run: npm version --allow-same-version ${{ needs.get_versions.outputs.ove_version }}
         working-directory: ./open-vector-editor-umd
 
       - name: "Publish @deltablot/open-vector-editor-umd"
