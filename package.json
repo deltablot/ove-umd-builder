@@ -8,6 +8,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "open-vector-editor": "^17.5.8"
+    "open-vector-editor": "^17.5.9"
   }
 }
