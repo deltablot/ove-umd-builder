@@ -1,6 +1,6 @@
 {
   "name": "@deltablot/open-vector-editor-umd",
-  "version": "18.0.0",
+  "version": "18.0.1",
   "description": "UMD files for open vector editor",
   "main": "open-vector-editor.js",
   "scripts": {
