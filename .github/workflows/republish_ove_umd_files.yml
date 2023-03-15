@@ -8,6 +8,9 @@ on:
 jobs:
   get_versions:
     runs-on: ubuntu-20.04
+    outputs:
+      ove_umd_version: ${{ steps.setver.outputs.ove_umd_version }}
+      ove_version:  ${{ steps.setver.outputs.ove_version }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
