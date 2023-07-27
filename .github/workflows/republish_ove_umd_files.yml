@@ -7,7 +7,7 @@ on:
 
 jobs:
   get_versions:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       ove_umd_version: ${{ steps.setver.outputs.ove_umd_version }}
       ove_version:  ${{ steps.setver.outputs.ove_version }}
@@ -15,37 +15,37 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - name: set versions
         id: setver
         run: |
-          echo "ove_umd_version=$(node -pe "require('./open-vector-editor-umd/package.json').version")" >> $GITHUB_OUTPUT
-          echo "ove_version=$(npm view open-vector-editor version)" >> $GITHUB_OUTPUT
+          echo "ove_umd_version=$(node -pe "require('./tg-oss-ove-umd/package.json').version")" >> $GITHUB_OUTPUT
+          echo "ove_version=$(npm view @teselagen/ove version)" >> $GITHUB_OUTPUT
 
   publish:
     needs: [get_versions]
     if: needs.get_versions.outputs.ove_umd_version < needs.get_versions.outputs.ove_version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org/
 
       - name: Install latest OVE
-        run: npm install open-vector-editor@${{ needs.get_versions.outputs.ove_version }} --silent
+        run: npm install @teselagen/ove@${{ needs.get_versions.outputs.ove_version }} --silent
 
       - name: Copy umd files
-        run: cp node_modules/open-vector-editor/umd/* open-vector-editor-umd/
+        run: bash -c 'cp node_modules/@teselagen/ove/{index.umd.js,style.css} tg-oss-ove-umd/
 
       - name: Update package version
         run: npm version --allow-same-version ${{ needs.get_versions.outputs.ove_version }}
-        working-directory: ./open-vector-editor-umd
+        working-directory: ./tg-oss-ove-umd
 
-      - name: "Publish @deltablot/open-vector-editor-umd"
+      - name: "Publish @deltablot/tg-oss-ove-umd"
         run: npm publish --access public
-        working-directory: ./open-vector-editor-umd
+        working-directory: ./tg-oss-ove-umd
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -53,7 +53,7 @@ jobs:
         run: |
           shopt -s extglob
           rm -rf !('package.json'|'README.md')
-        working-directory: ./open-vector-editor-umd
+        working-directory: ./tg-oss-ove-umd
 
       - name: Commit new version
         run: |
