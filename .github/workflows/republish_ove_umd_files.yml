@@ -37,7 +37,7 @@ jobs:
         run: npm install @teselagen/ove@${{ needs.get_versions.outputs.ove_version }} --silent
 
       - name: Copy umd files
-        run: bash -c 'cp node_modules/@teselagen/ove/{index.umd.js,style.css} tg-oss-ove-umd/
+        run: bash -c 'cp node_modules/@teselagen/ove/{index.umd.js,style.css} tg-oss-ove-umd/'
 
       - name: Update package version
         run: npm version --allow-same-version ${{ needs.get_versions.outputs.ove_version }}
