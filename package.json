@@ -1,6 +1,6 @@
 {
   "name": "@deltablot/ove-umd-builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helper to publish only the umd files of open-vector-editor",
   "author": "Marcel Bolten",
   "contributors": [
@@ -8,6 +8,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "open-vector-editor": "^18.3.6"
+    "@teselagen/ove": "^0.0.1"
   }
 }
