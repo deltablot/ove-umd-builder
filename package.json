@@ -8,6 +8,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@teselagen/ove": "^0.3.6"
+    "@teselagen/ove": "^0.3.7"
   }
 }
