@@ -9,8 +9,8 @@ jobs:
   get_versions:
     runs-on: ubuntu-22.04
     outputs:
-      ove_umd_version: ${{ steps.setver.outputs.ove_umd_version }}
-      ove_version:  ${{ steps.setver.outputs.ove_version }}
+      ove_version: ${{ steps.setver.outputs.ove_version }}
+      update: ${{ steps.setver.outputs.update }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,12 +19,14 @@ jobs:
       - name: set versions
         id: setver
         run: |
-          echo "ove_umd_version=$(node -pe "require('./tg-oss-ove-umd/package.json').version")" >> $GITHUB_OUTPUT
           echo "ove_version=$(npm view @teselagen/ove version)" >> $GITHUB_OUTPUT
+          npm install semver
+          npx semver -range "<$(npm view @teselagen/ove version)" "$(node -pe "require('./tg-oss-ove-umd/package.json').version")"
+          echo "update=$?" >> $GITHUB_OUTPUT
 
   publish:
     needs: [get_versions]
-    if: needs.get_versions.outputs.ove_umd_version < needs.get_versions.outputs.ove_version
+    if: needs.get_versions.outputs.update == 0
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
