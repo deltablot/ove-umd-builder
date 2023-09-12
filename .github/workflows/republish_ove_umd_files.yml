@@ -19,7 +19,6 @@ jobs:
       - name: install
         run: npm install
       - name: set, compare, and store versions
-        continue-on-error: true
         id: setver
         run: |
           ove_version=$(npm view @teselagen/ove version)
@@ -28,11 +27,9 @@ jobs:
           echo "ove_umd_version: $ove_umd_version"
           echo "ove_version=$ove_version" >> $GITHUB_OUTPUT
           npx semver --range "<$ove_version" "$ove_umd_version"
-          echo "update=$?" >> $GITHUB_OUTPUT
 
   publish:
-    needs: [get_versions]
-    if: needs.get_versions.outputs.update == 0
+    needs: get_versions
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
