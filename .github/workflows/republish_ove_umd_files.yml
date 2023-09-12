@@ -16,12 +16,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: set versions
+      - name: install
+        run: npm install
+      - name: set, compare, and store versions
         id: setver
         run: |
           echo "ove_version=$(npm view @teselagen/ove version)" >> $GITHUB_OUTPUT
-          npm install semver
-          npx semver -range "<$(npm view @teselagen/ove version)" "$(node -pe "require('./tg-oss-ove-umd/package.json').version")"
+          npx semver --range "<$(npm view @teselagen/ove version)" "$(node -pe "require('./tg-oss-ove-umd/package.json').version")"
           echo "update=$?" >> $GITHUB_OUTPUT
 
   publish:
