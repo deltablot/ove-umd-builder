@@ -19,6 +19,7 @@ jobs:
       - name: install
         run: npm install
       - name: set, compare, and store versions
+        continue-on-error: true
         id: setver
         run: |
           echo "ove_version=$(npm view @teselagen/ove version)" >> $GITHUB_OUTPUT
