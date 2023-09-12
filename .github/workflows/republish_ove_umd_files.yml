@@ -22,8 +22,12 @@ jobs:
         continue-on-error: true
         id: setver
         run: |
-          echo "ove_version=$(npm view @teselagen/ove version)" >> $GITHUB_OUTPUT
-          npx semver --range "<$(npm view @teselagen/ove version)" "$(node -pe "require('./tg-oss-ove-umd/package.json').version")"
+          ove_version=$(npm view @teselagen/ove version)
+          ove_umd_version="$(node -pe "require('./tg-oss-ove-umd/package.json').version")"
+          echo "ove_version: $ove_version"
+          echo "ove_umd_version: $ove_umd_version"
+          echo "ove_version=$ove_version" >> $GITHUB_OUTPUT
+          npx semver --range "<$ove_version" "$ove_umd_version"
           echo "update=$?" >> $GITHUB_OUTPUT
 
   publish:
