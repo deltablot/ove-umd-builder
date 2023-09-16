@@ -26,11 +26,12 @@ jobs:
           echo "ove_version: $ove_version"
           echo "ove_umd_version: $ove_umd_version"
           echo "ove_version=$ove_version" >> $GITHUB_OUTPUT
-          npx semver --range "<$ove_version" "$ove_umd_version"
+          echo "update=$(npx semver --range "<$ove_version" "$ove_umd_version")" >> $GITHUB_OUTPUT
 
   publish:
     needs: get_versions
     runs-on: ubuntu-22.04
+    if: needs.get_versions.outputs.update != 0
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
