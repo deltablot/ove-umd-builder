@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@teselagen/ove": "^0.3.28"
+    "@teselagen/ove": "^0.3.31"
   },
   "devDependencies": {
     "semver": "^7.5.4"
