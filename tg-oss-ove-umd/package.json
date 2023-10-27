@@ -1,6 +1,6 @@
 {
   "name": "@deltablot/tg-oss-ove-umd",
-  "version": "0.3.48",
+  "version": "0.3.49",
   "description": "UMD files for open vector editor",
   "main": "index.umd.js",
   "scripts": {
